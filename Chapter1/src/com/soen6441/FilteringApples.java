@@ -73,6 +73,10 @@ public class FilteringApples {
 		private int weight = 0;
 		private String color = "";
 
+		public Apple() {
+			super();
+		}
+
 		public Apple(int weight, String color) {
 			this.weight = weight;
 			this.color = color;
