@@ -48,14 +48,24 @@ public class FilteringApplesTest {
 	}
 
 	@Test
-	public void testFilterApples() {
+	public void testFilterApples_green() {
 		List<Apple> greenApples = filteringApples.filterApples(inventory, FilteringApples::isGreenApple);
 		assertEquals(2, greenApples.size());
 	}
-	
+
 	@Test
-	public void testFilterHeavyApples() {
+	public void testFilterApples_heavy() {
 		List<Apple> greenApples = filteringApples.filterApples(inventory, FilteringApples::isHeavyApple);
 		assertEquals(1, greenApples.size());
+	}
+
+	@Test
+	public void testFilterGreenApples() {
+		assertEquals(2, filteringApples.filterGreenApples(inventory).size());
+	}
+
+	@Test
+	public void testFilterHeavyApples() {
+		assertEquals(1, filteringApples.filterHeavyApples(inventory).size());
 	}
 }
