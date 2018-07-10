@@ -10,8 +10,8 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.soen6441.FilteringApples;
-import com.soen6441.FilteringApples.Apple;
+import com.soen6441.main.FilteringApples;
+import com.soen6441.main.FilteringApples.Apple;
 
 public class FilteringApplesTest {
 

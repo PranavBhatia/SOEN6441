@@ -1,4 +1,4 @@
-package com.soen6441;
+package com.soen6441.main;
 
 import java.util.*;
 import java.util.function.Predicate;
