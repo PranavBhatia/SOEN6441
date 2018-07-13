@@ -1,12 +1,16 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="hello-ivy" default="run">
 
+	
+	<property name="source.dir" location="src" />
+	<property name="doc.dir" location="JavaDoc" />
+	
 	<target name="clean">
 		<delete dir="build" />
 	</target>
-	
-	 <target name="resolve" description="--> retrieve dependencies with Ivy">
-	        <ivy:retrieve/>
-	    </target>
+
+	<target name="resolve" description="--> retrieve dependencies with Ivy">
+		<ivy:retrieve />
+	</target>
 
 	<target name="compile">
 		<mkdir dir="build/classes" />
@@ -24,6 +28,10 @@
 
 	<target name="run">
 		<java jar="build/jar/FilteringApples.jar" fork="true" />
+	</target>
+
+	<target name="doc" description="generate documentation">
+		<javadoc sourcepath="${source.dir}" destdir="${doc.dir}" />
 	</target>
 
 </project>

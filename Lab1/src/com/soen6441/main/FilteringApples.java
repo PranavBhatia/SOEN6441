@@ -3,6 +3,12 @@ package com.soen6441.main;
 import java.util.*;
 import java.util.function.Predicate;
 
+/**
+ * 
+ * Class for filtering apples
+ * @author PB
+ *
+ */
 public class FilteringApples {
 
 	public static void main(String... args) {
@@ -31,6 +37,11 @@ public class FilteringApples {
 		System.out.println("weirdApples: " + weirdApples);
 	}
 
+	/**
+	 * Filters green coloured apples
+	 * @param inventory List of apples
+	 * @return
+	 */
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
 		List<Apple> result = new ArrayList<>();
 		for (Apple apple : inventory) {
@@ -41,6 +52,11 @@ public class FilteringApples {
 		return result;
 	}
 
+	/**
+	 * Filters heavy weight apples
+	 * @param inventory List of apples
+	 * @return
+	 */
 	public static List<Apple> filterHeavyApples(List<Apple> inventory) {
 		List<Apple> result = new ArrayList<>();
 		for (Apple apple : inventory) {
@@ -51,24 +67,44 @@ public class FilteringApples {
 		return result;
 	}
 
+	/**
+	 * Checks if apple is green
+	 * @param apple An apple object
+	 * @return
+	 */
 	public static boolean isGreenApple(Apple apple) {
 		return "green".equals(apple.getColor());
 	}
 
+	/**
+	 * Checks if apple is heavy
+	 * @param apple An apple object
+	 * @return
+	 */
 	public static boolean isHeavyApple(Apple apple) {
 		return apple.getWeight() > 150;
 	}
 
-	public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> p) {
+	/**
+	 * Filters apples based on passed Predicate
+	 * @param inventory List of apples
+	 * @param predicate A predicate object
+	 * @return
+	 */
+	public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> predicate) {
 		List<Apple> result = new ArrayList<>();
 		for (Apple apple : inventory) {
-			if (p.test(apple)) {
+			if (predicate.test(apple)) {
 				result.add(apple);
 			}
 		}
 		return result;
 	}
 
+	/**
+	 * Apple POJO class
+	 * @author PB
+	 */
 	public static class Apple {
 		private int weight = 0;
 		private String color = "";
