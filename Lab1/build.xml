@@ -1,25 +1,29 @@
-<project>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="hello-ivy" default="run">
 
-    <target name="clean">
-        <delete dir="build"/>
-    </target>
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+	
+	 <target name="resolve" description="--> retrieve dependencies with Ivy">
+	        <ivy:retrieve/>
+	    </target>
 
-    <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src/com/soen6441/main" destdir="build/classes"/>
-    </target>
+	<target name="compile">
+		<mkdir dir="build/classes" />
+		<javac srcdir="src/com/soen6441/main" destdir="build/classes" />
+	</target>
 
-    <target name="jar">
-        <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/FilteringApples.jar" basedir="build/classes">
-            <manifest>
-                <attribute name="Main-Class" value="com.soen6441.main.FilteringApples"/>
-            </manifest>
-        </jar>
-    </target>
+	<target name="jar">
+		<mkdir dir="build/jar" />
+		<jar destfile="build/jar/FilteringApples.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="com.soen6441.main.FilteringApples" />
+			</manifest>
+		</jar>
+	</target>
 
-    <target name="run">
-        <java jar="build/jar/FilteringApples.jar" fork="true"/>
-    </target>
+	<target name="run">
+		<java jar="build/jar/FilteringApples.jar" fork="true" />
+	</target>
 
 </project>
