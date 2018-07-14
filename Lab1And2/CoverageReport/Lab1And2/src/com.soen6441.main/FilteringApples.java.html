@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FilteringApples.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">FilteringApplesTest (Jul 13, 2018 8:13:58 PM)</a> &gt; <a href="../../index.html" class="el_group">Lab1And2</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">com.soen6441.main</a> &gt; <span class="el_source">FilteringApples.java</span></div><h1>FilteringApples.java</h1><pre class="source lang-java linenums">package com.soen6441.main;
+
+import java.util.*;
+import java.util.function.Predicate;
+
+/**
+ * 
+ * Class for filtering apples
+ * @author PB
+ *
+ */
+<span class="fc" id="L12">public class FilteringApples {</span>
+
+	public static void main(String... args) {
+
+<span class="nc" id="L16">		List&lt;Apple&gt; inventory = Arrays.asList(new Apple(80, &quot;green&quot;), new Apple(155, &quot;green&quot;), new Apple(120, &quot;red&quot;));</span>
+
+		// [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+<span class="nc" id="L19">		List&lt;Apple&gt; greenApples = filterApples(inventory, FilteringApples::isGreenApple);</span>
+<span class="nc" id="L20">		System.out.println(&quot;greenApples: &quot; + greenApples);</span>
+
+		// [Apple{color='green', weight=155}]
+<span class="nc" id="L23">		List&lt;Apple&gt; heavyApples = filterApples(inventory, FilteringApples::isHeavyApple);</span>
+<span class="nc" id="L24">		System.out.println(&quot;heavyApples: &quot; + heavyApples);</span>
+
+		// [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+<span class="nc" id="L27">		List&lt;Apple&gt; greenApples2 = filterApples(inventory, (Apple a) -&gt; &quot;green&quot;.equals(a.getColor()));</span>
+<span class="nc" id="L28">		System.out.println(&quot;greenApples2: &quot; + greenApples2);</span>
+
+		// [Apple{color='green', weight=155}]
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		List&lt;Apple&gt; heavyApples2 = filterApples(inventory, (Apple a) -&gt; a.getWeight() &gt; 150);</span>
+<span class="nc" id="L32">		System.out.println(&quot;heavyApples2: &quot; + heavyApples2);</span>
+
+		// []
+<span class="nc" id="L35">		List&lt;Apple&gt; weirdApples = filterApples(inventory,</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">				(Apple a) -&gt; a.getWeight() &lt; 80 || &quot;brown&quot;.equals(a.getColor()));</span>
+<span class="nc" id="L37">		System.out.println(&quot;weirdApples: &quot; + weirdApples);</span>
+<span class="nc" id="L38">	}</span>
+
+	/**
+	 * Filters green coloured apples
+	 * @param inventory List of apples
+	 * @return
+	 */
+	public static List&lt;Apple&gt; filterGreenApples(List&lt;Apple&gt; inventory) {
+<span class="fc" id="L46">		List&lt;Apple&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		for (Apple apple : inventory) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">			if (&quot;green&quot;.equals(apple.getColor())) {</span>
+<span class="fc" id="L49">				result.add(apple);</span>
+			}
+		}
+<span class="fc" id="L52">		return result;</span>
+	}
+
+	/**
+	 * Filters heavy weight apples
+	 * @param inventory List of apples
+	 * @return
+	 */
+	public static List&lt;Apple&gt; filterHeavyApples(List&lt;Apple&gt; inventory) {
+<span class="fc" id="L61">		List&lt;Apple&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		for (Apple apple : inventory) {</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">			if (apple.getWeight() &gt; 150) {</span>
+<span class="fc" id="L64">				result.add(apple);</span>
+			}
+		}
+<span class="fc" id="L67">		return result;</span>
+	}
+
+	/**
+	 * Checks if apple is green
+	 * @param apple An apple object
+	 * @return
+	 */
+	public static boolean isGreenApple(Apple apple) {
+<span class="fc" id="L76">		return &quot;green&quot;.equals(apple.getColor());</span>
+	}
+
+	/**
+	 * Checks if apple is heavy
+	 * @param apple An apple object
+	 * @return
+	 */
+	public static boolean isHeavyApple(Apple apple) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		return apple.getWeight() &gt; 150;</span>
+	}
+
+	/**
+	 * Filters apples based on passed Predicate
+	 * @param inventory List of apples
+	 * @param predicate A predicate object
+	 * @return
+	 */
+	public static List&lt;Apple&gt; filterApples(List&lt;Apple&gt; inventory, Predicate&lt;Apple&gt; predicate) {
+<span class="fc" id="L95">		List&lt;Apple&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">		for (Apple apple : inventory) {</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (predicate.test(apple)) {</span>
+<span class="fc" id="L98">				result.add(apple);</span>
+			}
+		}
+<span class="fc" id="L101">		return result;</span>
+	}
+
+	/**
+	 * Apple POJO class
+	 * @author PB
+	 */
+	public static class Apple {
+<span class="fc" id="L109">		private int weight = 0;</span>
+<span class="fc" id="L110">		private String color = &quot;&quot;;</span>
+
+		public Apple() {
+<span class="fc" id="L113">			super();</span>
+<span class="fc" id="L114">		}</span>
+
+<span class="fc" id="L116">		public Apple(int weight, String color) {</span>
+<span class="fc" id="L117">			this.weight = weight;</span>
+<span class="fc" id="L118">			this.color = color;</span>
+<span class="fc" id="L119">		}</span>
+
+		public Integer getWeight() {
+<span class="fc" id="L122">			return weight;</span>
+		}
+
+		public void setWeight(Integer weight) {
+<span class="fc" id="L126">			this.weight = weight;</span>
+<span class="fc" id="L127">		}</span>
+
+		public String getColor() {
+<span class="fc" id="L130">			return color;</span>
+		}
+
+		public void setColor(String color) {
+<span class="fc" id="L134">			this.color = color;</span>
+<span class="fc" id="L135">		}</span>
+
+		public String toString() {
+<span class="nc" id="L138">			return &quot;Apple{&quot; + &quot;color='&quot; + color + '\'' + &quot;, weight=&quot; + weight + '}';</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>FilteringApplesTest (Jul 13, 2018 8:13:58 PM)</div></body></html>
