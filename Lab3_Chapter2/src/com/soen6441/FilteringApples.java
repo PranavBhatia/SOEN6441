@@ -1,4 +1,5 @@
 package com.soen6441;
+
 import java.util.*;
 
 public class FilteringApples {
@@ -28,8 +29,10 @@ public class FilteringApples {
 		System.out.println(redApples2);
 
 		System.out.println("\n *****************MY CHANGES***************");
+
 		System.out.println("\nAppleColorFormatter(): ");
 		prettyPrintApple(inventory, new AppleColorFormatter());
+
 		System.out.println("\nAppleWeightFormatter(): ");
 		prettyPrintApple(inventory, new AppleWeightFormatter());
 	}
@@ -110,11 +113,11 @@ public class FilteringApples {
 	static class AppleWeightFormatter implements AppleFormatter {
 		@Override
 		public String format(Apple apple) {
-			boolean isHeavy = new AppleWeightPredicate().test(apple);
-			if (isHeavy)
-				return "Heavy apple: " + apple.getWeight().toString();
+			boolean isGreen = new AppleColorPredicate().test(apple);
+			if (isGreen)
+				return "Green apple: " + apple.getWeight().toString();
 			else
-				return "Light apple: " + apple.getWeight().toString();
+				return "Non-green apple: " + apple.getWeight().toString();
 		}
 	}
 
