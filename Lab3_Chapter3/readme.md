@@ -1,4 +1,7 @@
-## ThreadLocal: 
+# Output:
+16-Jul-2018
+
+## Summary: 
 The ThreadLocal class in Java enables you to create variables that can only be read and written by the same thread. Thus, even if two threads are executing the same code, and the code has a reference to a ThreadLocal variable, then the two threads cannot see each other's ThreadLocal variables.
 
 JavaDoc links:  
