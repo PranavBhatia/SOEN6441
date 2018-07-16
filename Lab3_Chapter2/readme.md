@@ -1,3 +1,5 @@
+#OUTPUT:
+
 [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
 [Apple{color='green', weight=155}]
 []
