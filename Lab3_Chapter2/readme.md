@@ -22,8 +22,6 @@ Light apple: red
 AppleWeightFormatter(): 
 
 Green apple: 80
-
 Green apple: 155
-
 Non-green apple: 120
 
