@@ -1,7 +1,7 @@
 # Output:
 
 Hello.  
-&ast&ast&ast    
+\***   
 Hello.  
 Hello.How are you?    
 2  
